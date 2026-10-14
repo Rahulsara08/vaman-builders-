@@ -1,0 +1,21 @@
+# --- DEFINITELY IGNORE (Zero value to AI) ---
+node_modules/
+dist/
+build/
+.next/
+package-lock.json
+*.log
+
+# --- ASSETS (Agent only needs to import these, not see the binary data) ---
+public/
+logo/
+src/assets/
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.mp4
+
+# --- CONFIG (Agent doesn't need to "read" these every time) ---
+eslint.config.js
+tsconfig.*

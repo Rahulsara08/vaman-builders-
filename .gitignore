@@ -1,0 +1,47 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+.env
+.env.*
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Temporary optimization scripts
+optimize-*.js
+optimize-*.cjs
+compress-*.js
+compress-*.cjs
+src/optimize.cjs
+src/compress-video.cjs
+
+# Raw/Unoptimized Media assets
+src/assets/raw/
+src/assets/temp_check/
+*.raw.mp4
+*.raw.png
+*.raw.jpg
+*.raw.jpeg
+*.zip
+temp-videos/
+
+
+.vercel

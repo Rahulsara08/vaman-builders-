@@ -1,0 +1,379 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --color-primary: #C92C15;
+  --color-secondary: #D43B13;
+  --color-accent: #C92C15;
+  --color-warm-bg: #FAF7F5;
+  --color-dark-neutral: #1B1B1B;
+  --color-text-dark: #2A2A2A;
+  --color-muted-gray: #6F6F6F;
+}
+
+@layer utilities {
+  .liquid-glass {
+    background: rgba(0, 0, 0, 0.4);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: none;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .liquid-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.4px;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 20%,
+      rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+      rgba(255,255,255,0.1) 80%, rgba(255,255,255,0.3) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 35s linear infinite;
+  }
+  
+  .animate-marquee-slow {
+    animation: marquee 50s linear infinite;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCROLL VIDEO BANNER — Fixed full-screen background
+   ═══════════════════════════════════════════════════════════════════════════ */
+#scroll-video-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: #0a0a0a;
+}
+
+#scroll-video-container canvas,
+#scroll-video-container video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#scroll-video-container .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.30);
+  pointer-events: none;
+}
+
+/* The home page content layer sits above the fixed video */
+.home-content-layer {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* Make solid section backgrounds transparent so the fixed wireframe video shows through */
+.home-content-layer section,
+.home-content-layer > div {
+  background-color: transparent !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Global Page Resets
+   ═══════════════════════════════════════════════════════════════════════════ */
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #FAF7F5;
+  color: #2A2A2A;
+  overflow-x: hidden;
+}
+
+/* Reset root container width from scaffolding */
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  border: none;
+  min-height: 100vh;
+  display: block;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF7F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #D43B13;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C92C15;
+}
+
+/* Custom styles for animations */
+.char-span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-18px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.char-span.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.text-shadow-premium {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75), 0 4px 25px rgba(0, 0, 0, 0.45);
+}
+
+/* Hero Edge Blur Overlay CSS Classes */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+:root {
+  --pull-easing: cubic-bezier(0.32, 0, 0.67, 0);
+  --return-easing: cubic-bezier(0.175, 0.885, 0.32, 1.4);
+  --active-toggle: #f5f8ea;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+/* --- Original Toggle Animation (Pull Down) ---
+.bg-front {
+  z-index: 2;
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  transition: transform 0.5s var(--return-easing), opacity 0.5s ease;
+}
+
+.pull-down {
+  z-index: 1;
+  transform: translateY(20vh) scale(1.1) !important;
+  opacity: 0.8 !important;
+  transition: transform 0.3s var(--pull-easing), opacity 0.3s ease !important;
+}
+------------------------------------------------ */
+
+/* --- New Fade Animation --- */
+.bg-front {
+  z-index: 2;
+  transform: none;
+  opacity: 1;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.pull-down {
+  z-index: 1;
+  transform: none !important;
+  opacity: 0 !important;
+  transition: opacity 0.8s ease-in-out !important;
+}
+
+.blur-overlay {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 10vh;
+  z-index: 2;
+  pointer-events: none;
+  backdrop-filter: blur(25px) saturate(1.5);
+  -webkit-backdrop-filter: blur(25px) saturate(1.5);
+}
+
+.blur-overlay-top {
+  top: 0;
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+}
+
+.blur-overlay-bottom {
+  bottom: 0;
+  mask-image: linear-gradient(to top, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 70%, transparent 100%);
+}
+
+/* Premium Typography System */
+h1 {
+  font-size: 2.75rem; /* 44px */
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+h2 {
+  font-size: 2.25rem; /* 36px */
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+h3 {
+  font-size: 1.5rem; /* 24px */
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+p {
+  line-height: 1.6;
+  font-size: 1rem; /* 16px */
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3.75rem; /* 60px */
+  }
+  h2 {
+    font-size: 2.75rem; /* 44px */
+  }
+  h3 {
+    font-size: 1.75rem; /* 28px */
+  }
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 4.25rem; /* 68px */
+  }
+  h2 {
+    font-size: 3.25rem; /* 52px */
+  }
+}
+
+/* Premium Warm-Light Banner for Inner Pages */
+.inner-hero-banner {
+  position: relative;
+  height: 44vh;
+  min-height: 320px;
+  width: 100%;
+  background: linear-gradient(135deg, #FAF7F5 0%, #F5EFEB 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Elegant Grid Line Overlay inside Banner */
+.inner-hero-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  background-image: linear-gradient(to right, #000000 1px, transparent 1px),
+                    linear-gradient(to bottom, #000000 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.inner-hero-banner-glow {
+  position: absolute;
+  width: 500px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(201, 44, 21, 0.08) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  border-radius: 9999px;
+  z-index: 1;
+}
+
+/* Responsive Hero Text Overlay Submerge Mask */
+.hero-overlay-mask {
+  mask-image: radial-gradient(ellipse at -20% 50%, black 35%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at -20% 50%, black 35%, transparent 80%);
+}
+
+/* Contact Page Specific Overlay Mask - Radial on mobile, Linear on PC */
+.contact-overlay-mask {
+  mask-image: radial-gradient(ellipse at -20% 50%, black 35%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at -20% 50%, black 35%, transparent 80%);
+}
+
+@media (min-width: 768px) {
+  .contact-overlay-mask {
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%), 
+                linear-gradient(to bottom, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%), 
+                        linear-gradient(to bottom, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+  }
+}
+
+/* Global brand overrides */
+span[class*="text-[#C92C15]"][class*="uppercase"],
+.text-\[\#C92C15\].uppercase,
+span.text-primary.uppercase {
+  font-weight: 800 !important;
+}
+
+/* Lenis Smooth Scroll Configuration */
+html {
+  scroll-behavior: auto !important;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* ========== MOBILE OPTIMIZATION ========== */
+@media (max-width: 767px) {
+  /* Reduce section heading bottom margins */
+  .inner-hero-banner {
+    min-height: 400px;
+    height: auto;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
+}
+

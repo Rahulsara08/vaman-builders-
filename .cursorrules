@@ -1,0 +1,28 @@
+# Media Optimization & Asset Pipeline Rules
+
+You must always follow these guidelines when handling new or updated images/videos:
+
+## 1. Git & Script Discipline
+* **Never commit or push raw unoptimized images or videos.** All raw media must be placed in `src/assets/raw/` or have a `.raw` suffix, which are ignored in `.gitignore`.
+* **Git commits/pushes must only be done when explicitly asked by the user.**
+* Temporary scripts (like `optimize.cjs`, `compress-video.cjs`) must be deleted or named to match the ignored patterns (e.g. `compress-*.js`, etc.).
+
+## 2. Image Optimization Rules
+* All logo, UI, and bento-grid images must be converted to **WebP (`.webp`)** format.
+* Use `sharp` to process images with a target quality of `85` and `effort: 6`.
+* Target file size should be minimized (e.g., logos under 100 KB, background images under 300 KB).
+* The webpage favicon should always use a lightweight format like vector SVG (`favicon.svg`) under 15 KB, rather than heavy PNGs.
+
+## 3. Video Optimization Rules
+* All background/looping videos must be converted to two optimized formats:
+  1. **WebM (`.webm`)**: Encoded using VP9 (`-c:v libvpx-vp9 -crf 38 -b:v 0 -deadline good -cpu-used 4`). Remove audio (`-an`) unless explicitly requested.
+  2. **MP4 (`.mp4`)**: Encoded using H.264 (`-c:v libx264 -crf 28 -preset fast -pix_fmt yuv420p`). Remove audio (`-an`).
+* **Faststart Requirement**: All MP4 files MUST be generated with `-movflags +faststart` to place the `moov` atom at the beginning of the file. This allows browsers to play the video instantly while downloading.
+* Update video tags to use the multi-source format:
+  ```html
+  <video autoPlay loop muted playsInline preload="auto">
+    <source src={VideoWebm} type="video/webm" />
+    <source src={VideoMp4} type="video/mp4" />
+  </video>
+  ```
+* Avoid complex canvas frame-capturing loops (e.g., CPU-intensive Javascript boomerang animations) as they freeze the browser's main thread on load. Use clean, hardware-accelerated HTML5 `<video>` loops instead.
