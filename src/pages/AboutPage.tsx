@@ -8,8 +8,6 @@ import About from '../components/About';
 import OurJourney from '../components/OurJourney';
 import { Layers, ShieldCheck, Landmark, Leaf, Eye, Award } from 'lucide-react';
 import { assets } from '../lib/cloudinary';
-const HookVideo = assets.videos.hookMp4;
-const HookWebm = assets.videos.hookWebm;
 
 interface TiltCardProps {
   children: React.ReactNode;
@@ -227,18 +225,6 @@ export const AboutPage: React.FC = () => {
 
       {/* 1. Premium Animated Text-Rotating Header Banner */}
       <div className="inner-hero-banner relative overflow-hidden pt-28 pb-16 md:pt-48 md:pb-32 flex flex-col items-center justify-center !h-auto min-h-[460px] md:min-h-[600px]">
-        {/* Hanging Hook Video Component on Top Left - Flush to Navbar on Mobile */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="absolute top-[65px] md:top-[88px] right-[-30px] sm:right-[-40px] md:right-[-100px] w-[340px] sm:w-[480px] md:w-[800px] h-auto pointer-events-none z-20 mix-blend-multiply filter contrast-[1.1] brightness-[1.05] opacity-60 md:opacity-100"
-        >
-          <source src={HookWebm} type="video/webm" />
-          <source src={HookVideo} type="video/mp4" />
-        </video>
 
         {/* Decorative radial glows */}
         <div className="inner-hero-banner-glow top-[-50px] right-[-100px] absolute w-[300px] h-[300px] bg-[#C92C15]/5 rounded-full blur-[100px] pointer-events-none" />

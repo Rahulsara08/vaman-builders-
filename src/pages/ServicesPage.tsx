@@ -303,13 +303,11 @@ export const ServicesPage = () => {
             {/* Card 1: Residential */}
             <FadeUp delay={0.1} y={40} className="bg-white rounded-3xl overflow-hidden group border border-black/5 shadow-xl flex flex-col justify-between min-h-[340px] md:min-h-[420px] hover:shadow-2xl transition-all duration-300">
               <div className="relative h-40 md:h-60 w-full overflow-hidden">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                <img
                   src={assets.videos.servicesResidential}
+                  alt="Residential Construction Division"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
                 />
                  <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-white/5 to-transparent pointer-events-none" />
                 <span className="absolute top-4 left-4 bg-[#C92C15] border border-[#C92C15]/40 px-3.5 py-1.5 rounded-full text-xxs uppercase tracking-wider font-bold text-white shadow-md">
@@ -329,13 +327,11 @@ export const ServicesPage = () => {
             {/* Card 2: Commercial */}
             <FadeUp delay={0.2} y={40} className="bg-white rounded-3xl overflow-hidden group border border-black/5 shadow-xl flex flex-col justify-between min-h-[340px] md:min-h-[420px] hover:shadow-2xl transition-all duration-300">
               <div className="relative h-40 md:h-60 w-full overflow-hidden">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                <img
                   src={assets.videos.servicesCommercial}
+                  alt="Commercial Construction Division"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
                 />
                  <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-white/5 to-transparent pointer-events-none" />
                 <span className="absolute top-4 left-4 bg-[#1B1B1B] border border-black/40 px-3.5 py-1.5 rounded-full text-xxs uppercase tracking-wider font-bold text-white shadow-md">

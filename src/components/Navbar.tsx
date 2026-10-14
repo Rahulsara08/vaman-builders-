@@ -64,12 +64,12 @@ export const Navbar = () => {
             <Link 
               to="/" 
               onClick={() => setIsMenuOpen(false)}
-              className="flex items-center justify-center cursor-pointer bg-white px-2 py-1 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md overflow-hidden"
+              className="flex items-center justify-center cursor-pointer bg-white/95 hover:bg-white px-3 py-1.5 rounded-xl shadow-sm border border-black/5 transition-all duration-300 hover:shadow-md hover:scale-[1.02] overflow-hidden"
             >
               <img 
                 src={LogoImg} 
                 alt="Utkarsh Builder Logo" 
-                className="h-[40px] md:h-[48px] lg:h-[52px] w-auto object-contain transition-all duration-300"
+                className="h-[34px] sm:h-[40px] md:h-[44px] w-auto max-w-[190px] sm:max-w-[220px] object-contain transition-all duration-300"
               />
             </Link>
 

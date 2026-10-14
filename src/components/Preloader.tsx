@@ -32,14 +32,14 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       {isLoading && (
         <motion.div className="fixed inset-0 h-[100dvh] w-full z-[999999] pointer-events-none flex flex-col overflow-hidden">
           {/* ── Center Logo Container (Clean logo without card box or shadow) ── */}
-          <div className="absolute inset-0 z-50 flex items-center justify-center pointer-events-none">
+          <div className="absolute inset-0 z-50 flex items-center justify-center pointer-events-none px-6">
             <motion.img
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: [0, 1, 1, 0], scale: [0.85, 1, 1, 0.95] }}
+              initial={{ opacity: 0, scale: 0.88 }}
+              animate={{ opacity: [0, 1, 1, 0], scale: [0.88, 1, 1, 0.96] }}
               transition={{ duration: 1.6, times: [0, 0.3, 0.75, 1], ease: 'easeInOut' }}
               src={assets.logo}
               alt="Utkarsh Builder"
-              className="w-40 sm:w-56 md:w-72 h-auto object-contain"
+              className="w-64 sm:w-80 md:w-[480px] max-w-[88vw] h-auto object-contain filter drop-shadow-[0_12px_28px_rgba(0,0,0,0.22)]"
               fetchPriority="high"
               loading="eager"
               draggable={false}

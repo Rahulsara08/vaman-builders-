@@ -48,7 +48,7 @@ export const Footer: React.FC = () => {
               <img
                 src={LogoImg}
                 alt="Utkarsh Builder Logo"
-                className="h-10 md:h-12 w-auto object-contain transition-all duration-300"
+                className="h-11 md:h-14 w-auto max-w-[240px] object-contain transition-all duration-300"
               />
             </Link>
             <p className="font-medium text-sm leading-[1.8] max-w-md text-black/80">

@@ -149,14 +149,12 @@ export const Home: React.FC = () => {
         <section className="py-12 md:py-24 bg-white text-[#2A2A2A] border-t border-black/5">
           <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-16">
             <FadeUp delay={0.1} y={50} className="rounded-3xl overflow-hidden h-[340px] md:h-auto md:aspect-video relative group shadow-2xl border border-black/5 bg-gray-100">
-              {/* Background looping build video */}
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover select-none pointer-events-none opacity-80"
+              {/* Background architectural image */}
+              <img
                 src={assets.videos.homeApproach}
+                alt="Our Approach to Quality Construction"
+                className="w-full h-full object-cover select-none pointer-events-none opacity-85 transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
               />
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
